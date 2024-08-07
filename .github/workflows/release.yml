@@ -19,13 +19,8 @@ jobs:
           node-version: 20
           cache: pnpm
 
-      - run: pnpm install -g ovsx
       - run: pnpm install --frozen-lockfile
-      - run: pnpm run build:minify && pnpm ovsx publish
+      - run: pnpm run release
         working-directory: extensions/vscode
         env:
-          OVSX_PAT: ${{ secrets.OVSX_PAT }}
-    #   - run: pnpm ovsx publish
-    #     working-directory: extensions/vscode-typescript-plugin
-    #     env:
-    #       OVSX_PAT: ${{ secrets.OVSX_PAT }}
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}

@@ -4,7 +4,7 @@
 	"version": "2.0.28",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/vuejs/language-tools.git",
+		"url": "https://github.com/cany748/volar.git",
 		"directory": "packages/vscode"
 	},
 	"categories": [
@@ -17,7 +17,7 @@
 	"displayName": "Vue - Official",
 	"description": "Language Support for Vue",
 	"author": "johnsoncodehk",
-	"publisher": "Vue",
+	"publisher": "cany748",
 	"engines": {
 		"vscode": "^1.88.0"
 	},
