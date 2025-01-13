@@ -166,10 +166,6 @@ export function useHybridModeStatusItem() {
 		command: 'workbench.action.openSettings',
 		arguments: ['vue.server.hybridMode'],
 	};
-
-	if (!enabledHybridMode.value) {
-		item.severity = vscode.LanguageStatusSeverity.Warning;
-	}
 }
 
 function getTsVersion(libPath: string) {
