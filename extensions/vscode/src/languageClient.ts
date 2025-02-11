@@ -16,7 +16,6 @@ import { activate as activateDoctor } from './features/doctor';
 import { activate as activateNameCasing } from './features/nameCasing';
 import { activate as activateSplitEditors } from './features/splitEditors';
 import { enabledHybridMode, enabledTypeScriptPlugin, useHybridModeStatusItem, useHybridModeTips } from './hybridMode';
-import { useInsidersStatusItem } from './insiders';
 
 let client: lsp.BaseLanguageClient;
 
@@ -123,7 +122,6 @@ async function activateLc(
 	}
 
 	useHybridModeStatusItem();
-	useInsidersStatusItem(context);
 
 	async function requestRestartExtensionHost(msg: string) {
 		const reload = await vscode.window.showInformationMessage(

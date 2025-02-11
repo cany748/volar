@@ -1,4 +1,8 @@
-# Vue - Official
+# Vue - without the ugly dot
+
+<p>
+	<img src="assets/images/readme.png"/>
+</p>
 
 ## Quick Start
 
@@ -11,7 +15,7 @@
 
 This project is community-driven. If you would like to support this project, consider joining the [Insiders Program](https://github.com/vuejs/language-tools/wiki/Get-Insiders-Edition) to improve the sustainability of this project and unlock more features.
 
-<!-- 
+<!--
 
 ## Usage
 
