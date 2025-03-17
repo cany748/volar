@@ -16,7 +16,6 @@ import { activate as activateDoctor } from './features/doctor';
 import { activate as activateNameCasing } from './features/nameCasing';
 import { activate as activateSplitEditors } from './features/splitEditors';
 import { checkCompatible } from './hybridMode';
-import { useInsidersStatusItem } from './insiders';
 
 let client: lsp.BaseLanguageClient;
 
@@ -93,8 +92,6 @@ async function activateLc(
 
 	lsp.activateAutoInsertion(selectors, client);
 	lsp.activateDocumentDropEdit(selectors, client);
-
-	useInsidersStatusItem(context);
 
 	async function requestRestartExtensionHost(msg: string) {
 		const reload = await vscode.window.showInformationMessage(msg, 'Restart Extension Host');
