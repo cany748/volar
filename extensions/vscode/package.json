@@ -1,10 +1,10 @@
 {
 	"private": true,
-	"name": "volar",
-	"version": "3.0.0-beta.2",
+	"name": "volar-clean",
+	"version": "3.1.0",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/vuejs/language-tools.git",
+		"url": "https://github.com/cany748/volar.git",
 		"directory": "extensions/vscode"
 	},
 	"categories": [
@@ -14,10 +14,10 @@
 		"url": "https://github.com/sponsors/johnsoncodehk"
 	},
 	"icon": "images/icon.png",
-	"displayName": "Vue (Official)",
+	"displayName": "Vue - without the ugly dot",
 	"description": "Language Support for Vue",
 	"author": "johnsoncodehk",
-	"publisher": "Vue",
+	"publisher": "cany748",
 	"engines": {
 		"vscode": "^1.88.0"
 	},
