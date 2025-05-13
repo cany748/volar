@@ -20,13 +20,10 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install -g ovsx && pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
-      - name: Build
-        run: pnpm run build && pnpm --filter volar run build:prod
-
-      - name: Publish
-        run: pnpm ovsx publish
+      - name: Build and Publish
+        run: pnpm run release
         working-directory: extensions/vscode
         env:
-          OVSX_PAT: ${{ secrets.OVSX_PAT }}
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
