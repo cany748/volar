@@ -223,7 +223,7 @@ export function baseCreate(
 
 	function getMetaScriptContent(fileName: string) {
 		let code = `
-import type { ComponentType, ComponentProps, ComponentEmit, ComponentSlots, ComponentExposed } from 'vue-component-type-helpers';
+import type { ComponentType, ComponentProps, ComponentEmit, ComponentSlots, ComponentExposed } from 'vue-component-type-helpers${commandLine.vueOptions.target < 3 ? '/vue2' : ''}';
 import * as Components from '${fileName.slice(0, -'.meta.ts'.length)}';
 
 export default {} as { [K in keyof typeof Components]: ComponentMeta<typeof Components[K]>; };
@@ -892,6 +892,7 @@ function readTsComponentDefaultProps(
 				return component;
 			}
 			// export default defineComponent({ ... })
+			// export default Vue.extend({ ... })
 			else if (ts.isCallExpression(component)) {
 				if (component.arguments.length) {
 					const arg = component.arguments[0];

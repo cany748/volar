@@ -5,18 +5,19 @@ import { parseBindingRanges } from './scriptSetupRanges';
 
 export interface ScriptRanges extends ReturnType<typeof parseScriptRanges> { }
 
-export function parseScriptRanges(ts: typeof import('typescript'), ast: ts.SourceFile, hasScriptSetup: boolean) {
+export function parseScriptRanges(ts: typeof import('typescript'), ast: ts.SourceFile, hasScriptSetup: boolean, withNode: boolean) {
 
 	let exportDefault: (TextRange & {
 		expression: TextRange,
 		args: TextRange,
-		argsNode: ts.ObjectLiteralExpression,
+		argsNode: ts.ObjectLiteralExpression | undefined,
 		componentsOption: TextRange | undefined,
 		componentsOptionNode: ts.ObjectLiteralExpression | undefined,
 		directivesOption: TextRange | undefined,
 		nameOption: TextRange | undefined,
 		inheritAttrsOption: string | undefined,
 	}) | undefined;
+	let classBlockEnd: number | undefined;
 
 	const bindings = hasScriptSetup ? parseBindingRanges(ts, ast) : [];
 
@@ -65,19 +66,28 @@ export function parseScriptRanges(ts: typeof import('typescript'), ast: ts.Sourc
 					..._getStartEnd(raw),
 					expression: _getStartEnd(node.expression),
 					args: _getStartEnd(obj),
-					argsNode: obj,
+					argsNode: withNode ? obj : undefined,
 					componentsOption: componentsOptionNode ? _getStartEnd(componentsOptionNode) : undefined,
-					componentsOptionNode,
+					componentsOptionNode: withNode ? componentsOptionNode : undefined,
 					directivesOption: directivesOptionNode ? _getStartEnd(directivesOptionNode) : undefined,
 					nameOption: nameOptionNode ? _getStartEnd(nameOptionNode) : undefined,
 					inheritAttrsOption,
 				};
 			}
 		}
+
+		if (
+			ts.isClassDeclaration(raw)
+			&& raw.modifiers?.some(mod => mod.kind === ts.SyntaxKind.ExportKeyword)
+			&& raw.modifiers?.some(mod => mod.kind === ts.SyntaxKind.DefaultKeyword)
+		) {
+			classBlockEnd = raw.end - 1;
+		}
 	});
 
 	return {
 		exportDefault,
+		classBlockEnd,
 		bindings,
 	};
 

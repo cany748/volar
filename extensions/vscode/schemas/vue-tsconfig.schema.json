@@ -8,6 +8,8 @@
 					"default": "auto",
 					"enum": [
 						"auto",
+						2,
+						2.7,
 						3,
 						3.3,
 						3.5,
@@ -164,7 +166,7 @@
 						"(await import('vue')).defineComponent(",
 						")"
 					],
-					"markdownDescription": "How to wrap option of `export default { ... }`. Default: `[\"(await import('vue')).defineComponent(\", \")\"]`."
+					"markdownDescription": "How to wrap option of `export default { ... }`? Default: `[\"(await import('vue')).default.extend(\", \")\"]` for target < 2.7, `[\"(await import('vue')).defineComponent(\", \")\"]` for target >= 2.7."
 				},
 				"macros": {
 					"type": "object",
